@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Importar fuentes Stange */
+@font-face {
+  font-family: 'Stange';
+  src: url('/StangeRegular-2Oyq8.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Stange';
+  src: url('/StangeSemibold-vmPeM.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Stange';
+  src: url('/StangeBold-K7e2o.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Importar fuentes AeonikPro */
+@font-face {
+  font-family: 'AeonikPro';
+  src: url('/AeonikPro-Air.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'AeonikPro';
+  src: url('/AeonikPro-Thin.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'AeonikPro';
+  src: url('/AeonikPro-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'AeonikPro';
+  src: url('/AeonikPro-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'AeonikPro';
+  src: url('/AeonikPro-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-stange: 'Stange', Arial, sans-serif;
+  --font-aeonik: 'AeonikPro', Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-stange);
+  background: #000;
+  color: #fff;
+}

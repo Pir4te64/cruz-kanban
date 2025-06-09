@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  users User[]
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  password      String
+  name          String
+  roleId        Int
+  role          Role     @relation(fields: [roleId], references: [id])
+  isApproved    Boolean  @default(false)
+  tasks         Task[]
+  assignedTasks Task[]   @relation("TaskAssignee")
+  comments      Comment[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Task {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  weight      Int       @default(1)
+  status      String    @default("TODO") // TODO, IN_PROGRESS, DONE
+  assigneeId  Int
+  assignee    User      @relation("TaskAssignee", fields: [assigneeId], references: [id])
+  creatorId   Int
+  creator     User      @relation(fields: [creatorId], references: [id])
+  comments    Comment[]
+  startDate   DateTime
+  dueDate     DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  taskId    Int
+  task      Task     @relation(fields: [taskId], references: [id])
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
